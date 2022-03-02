@@ -34,13 +34,13 @@ cargo install --path circom
 
 ## Usage
 
-Create new empty folder for contains output files:
+Create a new empty folder that contains output files:
 
 ```bash
 mkdir multiplier2
 ```
 
-Create simple curcuit called `Multiplier2`
+Create simple circuit called `Multiplier2`
 
 ```circom
 pragma circom 2.0.0;
@@ -59,7 +59,7 @@ component main = Multiplier2();
 
 and saved with named `circuits/multiplier2.circom`
 
-Then, compile the circuit with symtax:
+Then, compile the circuit with syntax:
 
 ```bash
 circom <CIRCUIT_FILE> --r1cs --wasm --sym --c
@@ -71,9 +71,9 @@ For example:
 circom circuits/multiplier2.circom --r1cs --wasm --sysm --c --output ./multiplier2
 ```
 
-- `--r1cs` - generate R1CS contraint system in binary format
-- `--wasm` - it generate `multiplier2_js` folder that contains the WebAssembly code and files needed to generate the [witness](https://docs.circom.io/background/background/#witness)
-- `--sym` - it generate file `multiplier2.sym`, a symbols file for debugging printing the constraint system.
+- `--r1cs` - generate R1CS constraint system in binary format
+- `--wasm` - it generates `multiplier2_js` folder that contains the WebAssembly code and files needed to generate the [witness](https://docs.circom.io/background/background/#witness)
+- `--sym` - it generates file `multiplier2.sym`, a symbols file for debugging printing the constraint system.
 - `--c` - it generates the `multiplier2_cpp` folder, needed to compile the C code to generate the witness.
 - `--output` - generate all files into `output` folder.
 
@@ -97,9 +97,9 @@ The result should be:
 
 ## Compute the witness
 
-Go to `multiplier2/multiplier2_js` which is the javascript program, then we can use snarkjs to compute witness
+Go to `multiplier2/multiplier2_js`, which is the javascript program and then we can use snarkjs to compute witness
 
-we have to create input file first, we create `input.json` with input signal a and b
+we have to create an input file named `input.json` with input signals `a` and `b`
 
 ```json
 {
@@ -128,7 +128,7 @@ node generate_witness.js multiplier2.wasm input.json output.wtns
 
 ## Viewing the witness
 
-Now, we have binary file of witness, we need to convert it to JSON file with snarkjs
+Now we have a binary file of witness, we need to convert it to JSON file with snarkjs
 
 ```bash
 snarkjs wtns export json output.wtns output.json
@@ -145,7 +145,7 @@ The result is:
 ]
 ```
 
-- Line 1 : `1` - is just a contant of the contraints sysntem generated.
+- Line 1 : `1` - is just a content of the contraints system generated.
 - Line 2 : `50` - is the public output
 - Line 3, 4 : `10` and `5` - are private inputs.
 
